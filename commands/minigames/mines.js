@@ -55,6 +55,47 @@ module.exports = {
         // Generate a new board
         const board = generateBoard(mineCount);
 
+        // ========================================
+// OWNER DEBUG BOARD
+// ========================================
+
+if (interaction.user.id === process.env.OWNER_IDS) {
+
+    console.log("\n========== MINES DEBUG ==========\n");
+
+    console.log("         C1      C2      C3      C4      C5");
+    console.log("      -----------------------------------------");
+
+    for (let row = 0; row < 4; row++) {
+
+        let line = `R${row + 1} | `;
+
+        for (let col = 0; col < 5; col++) {
+
+            const index = row * 5 + col;
+
+            const tile = board[index] === "mine"
+                ? `M(${index.toString().padStart(2, "0")})`
+                : `G(${index.toString().padStart(2, "0")})`;
+
+            line += tile.padEnd(8);
+
+        }
+
+        console.log(line);
+
+    }
+
+    console.log("\nLegend:");
+    console.log("G = Gem");
+    console.log("M = Mine");
+
+    console.log("\n=================================\n");
+
+}
+/////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
         // Save the game
         activeGames.set(interaction.user.id, {
             userId: interaction.user.id,
