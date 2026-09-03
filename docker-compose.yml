@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  kaszino_bot:
+    container_name: kaszino_bot
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./database:/app/database
